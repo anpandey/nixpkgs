@@ -1430,6 +1430,10 @@ with pkgs;
 
   dolbybcsoftwaredecode = callPackage ../applications/audio/dolbybcsoftwaredecode { };
 
+  dotool = callPackage ../servers/sftpgo {
+    buildGoModule = buildGo119Module;
+  };
+
   dwarfs = callPackage ../tools/filesystems/dwarfs { };
 
   copier = callPackage ../tools/misc/copier { };
