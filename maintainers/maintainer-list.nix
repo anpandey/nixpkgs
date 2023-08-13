@@ -1141,6 +1141,7 @@
     keys = [{
       fingerprint = "06E8 4FF6 0CCF 7AFD 5101  76C9 0FBC D3EE 6310 7407";
     }];
+  };
   anpandey = {
     email = "anpandey@protonmail.com";
     github = "anpandey";
