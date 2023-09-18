@@ -70,15 +70,7 @@ python3.pkgs.buildPythonApplication rec {
     fakeredis
   ];
 
-  # TODO need to fix the tests as well
-  doCheck = false;
-
-  # testExpression = lib.optionalString (disabledTests != [])
-  #   "-k 'not ${lib.concatStringsSep " and not " disabledTests}'";
-
-  # checkPhase = ''
-  #   py.test tests/ ${testExpression}
-  # '';
+  doCheck = true;
 
   disabledTests = [
     # 400 Bad Request.
@@ -88,6 +80,10 @@ python3.pkgs.buildPythonApplication rec {
     "test_socks"
     "test_cert_req"
     "test_force_https"
+    # Disabled because of fakeredis patch.
+    "test_single_redis_entry"
+    "test_single_warc_record"
+    "test_redis_pending_count"
   ];
 
   meta = {
