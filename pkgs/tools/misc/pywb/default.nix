@@ -1,15 +1,9 @@
 { lib, fetchFromGitHub, fetchPypi, python3, stdenv }:
 
-let
-  python = python3.override {
-    # TODO: delete this if we end up not needing any overrides.
-    packageOverrides = self: super: {
-    };
-  };
-in
 python3.pkgs.buildPythonApplication rec {
   name = "pywb";
   version = "2.7.4";
+  format = "setuptools";
 
   src = fetchFromGitHub {
     owner = "webrecorder";
@@ -30,7 +24,7 @@ python3.pkgs.buildPythonApplication rec {
       --replace "gevent==21.12.0" "gevent"
   '';
 
-  propagatedBuildInputs = with python.pkgs; [
+  propagatedBuildInputs = with python3.pkgs; [
     brotlipy
     chardet
     fakeredis
@@ -54,11 +48,11 @@ python3.pkgs.buildPythonApplication rec {
     wsgiprox
   ];
 
-  nativeCheckInputs = with python.pkgs; [
+  nativeCheckInputs = with python3.pkgs; [
     pytestCheckHook
   ];
 
-  checkInputs = with python.pkgs; [
+  checkInputs = with python3.pkgs; [
     pytest
     mock
     webtest

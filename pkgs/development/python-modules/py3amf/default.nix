@@ -8,6 +8,7 @@
 buildPythonPackage rec {
   pname = "Py3AMF";
   version = "0.8.10";
+  format = "setuptools";
 
   disabled = !isPy3k;
 
@@ -20,7 +21,7 @@ buildPythonPackage rec {
 
   meta = with lib; {
     description = "AMF (Action Message Format) support for Python 3";
-    homepage = https://github.com/StdCarrot/Py3AMF;
+    homepage = "https://github.com/StdCarrot/Py3AMF";
     license = licenses.mit;
     maintainers = with maintainers; [ anpandey ];
   };
