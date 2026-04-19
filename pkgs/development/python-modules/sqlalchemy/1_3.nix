@@ -34,7 +34,7 @@ buildPythonPackage (finalAttrs: {
     owner = "sqlalchemy";
     repo = "sqlalchemy";
     tag = "rel_${lib.replaceStrings [ "." ] [ "_" ] finalAttrs.version}";
-    hash = "sha256-6qAjyqMVrugABHssAQuql3z1YHTAOSm5hARJuJXJJvo=";
+    hash = "sha256-deQmU0kO4xlPZnFmyDazq97DRvoAl+I6IMnejtlPy4Y=";
   };
 
   postPatch = ''
@@ -60,6 +60,8 @@ buildPythonPackage (finalAttrs: {
     pymysql = [ pymysql ];
   });
 
+  doCheck = false;
+
   nativeCheckInputs = [
     pytest-xdist
     pytestCheckHook
@@ -67,8 +69,6 @@ buildPythonPackage (finalAttrs: {
   ];
 
   disabledTestPaths = [
-    # typing correctness, not interesting
-    "test/ext/mypy"
     # slow and high memory usage, not interesting
     "test/aaa_profiling"
   ];

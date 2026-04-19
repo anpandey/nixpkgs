@@ -13,13 +13,16 @@ let
   overrides = [
     (self: super: {
       alembic = super.alembic.overridePythonAttrs (oldAttrs: rec {
-        version = "1.14.1";
+        version = "1.8.1";
         src = fetchPypi {
           pname = "alembic";
           inherit version;
-          sha256 = "sha256-SW6IgkWlOt8UmPyrMXE6Rpxlg2+N524BOZqhw+kN0hM=";
+          sha256 = "sha256-zQteRbFLcGQmuDPwY2m5ptXuA/gm7DI4cjzoyq9uX/o=";
         };
         doCheck = false;
+        dependencies =
+          (builtins.filter (p: p.pname or "" != "sqlalchemy") (oldAttrs.dependencies or [ ]))
+          ++ [ self.sqlalchemy_1_3 ];
       });
     })
   ];
